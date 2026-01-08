@@ -10,14 +10,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false, unique = true)
     private String email;
 
-    // getters and setters
+    public User() {
+    }
+
     public Long getId() {
         return id;
     }
 
+    // ID setter optional (can be omitted, but safe to keep)
     public void setId(Long id) {
         this.id = id;
     }

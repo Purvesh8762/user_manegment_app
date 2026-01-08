@@ -5,14 +5,16 @@ import jakarta.validation.constraints.NotBlank;
 
 public class UserRequestDTO {
 
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "Name must not be empty")
     private String name;
 
-    @Email(message = "Email must be valid")
-    @NotBlank(message = "Email is required")
+    @NotBlank(message = "Email must not be empty")
+    @Email(message = "Email should be valid")
     private String email;
 
-    // getters and setters
+    public UserRequestDTO() {
+    }
+
     public String getName() {
         return name;
     }
