@@ -1,6 +1,7 @@
 package com.usermanagement.app.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
@@ -10,20 +11,25 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String email;
 
-    public User() {
-    }
+    private String password;
+
+    // 🔐 Forgot password fields
+    @Column(length = 6)
+    private String otp;
+
+    private LocalDateTime otpExpiry;
+
+    // ---------- Getters & Setters ----------
 
     public Long getId() {
         return id;
     }
 
-    // ID setter optional (can be omitted, but safe to keep)
     public void setId(Long id) {
         this.id = id;
     }
@@ -42,5 +48,29 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getOtp() {
+        return otp;
+    }
+
+    public void setOtp(String otp) {
+        this.otp = otp;
+    }
+
+    public LocalDateTime getOtpExpiry() {
+        return otpExpiry;
+    }
+
+    public void setOtpExpiry(LocalDateTime otpExpiry) {
+        this.otpExpiry = otpExpiry;
     }
 }
