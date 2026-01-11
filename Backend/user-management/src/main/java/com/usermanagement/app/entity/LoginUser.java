@@ -4,27 +4,26 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "login_users")
+public class LoginUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
+
+    private String name;
 
     private String password;
 
-    // 🔐 Forgot password fields
     @Column(length = 6)
     private String otp;
 
     private LocalDateTime otpExpiry;
 
-    // ---------- Getters & Setters ----------
+    // ---- Getters & Setters ----
 
     public Long getId() {
         return id;
@@ -34,20 +33,20 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
